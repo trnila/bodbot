@@ -1,0 +1,7 @@
+[auth]
+homeserver=https://matrix.org
+username=@bot:matrix.org
+password=password
+
+[classes.apps]
+st0715=https://docs.google.com/spreadsheet...
