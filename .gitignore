@@ -1,0 +1,4 @@
+config.ini
+*.db
+env
+__pycache__
