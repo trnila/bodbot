@@ -9,7 +9,6 @@ from points import Points
 
 logger = logging.getLogger(__name__)
 
-
 class BodBot:
     def __init__(self):
         self.config = configparser.ConfigParser()
@@ -48,6 +47,12 @@ class BodBot:
             logger.error("Multiple peoples in the room")
             await self.send(room.room_id, "I cant talk due to the GDPR :(")
             return
+        
+        if event.sender.split(':')[1] != 'matrix.cs.vsb.cz':
+            logger.error("unauthenticated homeserver")
+            await self.send(room.room_id, "I cant talk due to the GDPR :(")
+            return
+
 
         if event.body == 'apps':
             await self.send_points(room, self.get_login(event.sender))
