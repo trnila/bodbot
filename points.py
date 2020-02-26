@@ -5,6 +5,9 @@ import aiohttp
 
 logger = logging.getLogger(__name__)
 
+
+Task = namedtuple('Task', ['name', 'points', 'min', 'max'])
+
 def extract_tasks(row):
     results = OrderedDict()
     for task, score in row.items():
@@ -35,10 +38,6 @@ def parse(text):
 
     return (mins, maxs, students)
 
-parse(open("a.csv").read())
-
-Task = namedtuple('Task', ['name', 'points', 'min', 'max'])
-
 class Class:
     def __init__(self, name, url):
         self.name = name
@@ -61,6 +60,7 @@ class Class:
         if login not in self.students:
             return None
         
+        await self.sync()
         result = []
         for task, pts in self.students[login].items():
             t = Task(
