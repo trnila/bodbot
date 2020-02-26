@@ -1,0 +1,4 @@
+matrix-nio==0.7
+aiohttp==3.6.2
+peewee==3.13.1
+crypto==1.4.1
